@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🐾 Huellitas | Agendar cita</title>
+
+
+    <style>
+
+        /* =========================
+           CONFIGURACIÓN GENERAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef9f6,
+                    #ffffff
+                );
+
+            color: #444;
+
+        }
+
+
+        /* =========================
+           ENCABEZADO
+        ========================= */
+
+        header {
+
+            background: white;
+
+            padding: 18px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 3px 15px rgba(0,0,0,0.08);
+
+            position: relative;
+
+            z-index: 10;
+
+        }
+
+
+        .logo {
+
+            color: #6499ef;
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .inicio {
+
+            text-decoration: none;
+
+            color: white;
+
+            background: #6b99ee;
+
+            padding: 11px 20px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+
+        .inicio:hover {
+
+            background: #6168f1;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================
+           CONTENEDOR PRINCIPAL
+        ========================= */
+
+        .contenedor {
+
+            width: 90%;
+
+            max-width: 1100px;
+
+            margin: 50px auto;
+
+            display: grid;
+
+            grid-template-columns: 42% 58%;
+
+            background: white;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 40px rgba(55,110,100,0.15);
+
+            animation: aparecer 0.8s ease;
+
+        }
+
+
+        @keyframes aparecer {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(20px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+        /* =========================
+           IMAGEN
+        ========================= */
+
+        .imagen-mascotas {
+
+            width: 100%;
+
+            min-height: 650px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            background: #dff2ed;
+
+        }
+
+
+        .imagen-mascotas img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform 0.6s ease;
+
+        }
+
+
+        .imagen-mascotas:hover img {
+
+            transform: scale(1.04);
+
+        }
+        .boton-mascotas {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            text-align: center;
+            text-decoration: none;
+            border: 2px solid #5d7be8;
+            border-radius: 16px;
+            color: #81c2ed;
+            background: white;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .boton-mascotas:hover {
+            background: #bdcef0;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           TEXTO SOBRE LA IMAGEN
+        ========================= */
+
+        .mensaje-imagen {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 0;
+
+            right: 0;
+
+            padding:
+                70px 28px 30px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(112, 157, 241, 0.9)
+                );
+
+        }
+
+
+        .mensaje-imagen h2 {
+
+            font-size: 27px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .mensaje-imagen p {
+
+            font-size: 15px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================
+           FORMULARIO
+        ========================= */
+
+        .contenido-formulario {
+
+            padding: 45px;
+
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================= */
+
+        .titulo {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .titulo h1 {
+
+            color: #34aaf9;
+
+            font-size: 32px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .titulo p {
+
+            color: #777;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================
+           FORMULARIO
+        ========================= */
+
+        .formulario {
+
+            background: white;
+
+        }
+
+
+        .fila {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 20px;
+
+        }
+
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
+        .campo {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .campo label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #444;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        .campo input,
+        .campo select {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #dce7e4;
+
+            border-radius: 14px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            background: #fafdfc;
+
+            transition: 0.3s;
+
+        }
+
+
+        .campo input:hover,
+        .campo select:hover {
+
+            border-color: #7c9afb;
+
+        }
+
+
+        .campo input:focus,
+        .campo select:focus {
+
+            border-color: #3369dc;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px rgba(114,183,168,0.15);
+
+        }
+
+
+        /* =========================
+           BOTÓN
+        ========================= */
+
+        .confirmar {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f6bf9,
+                    #4588f4
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 6px 15px rgba(77,149,135,0.25);
+
+        }
+
+
+        .confirmar:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 20px rgba(77,149,135,0.30);
+
+        }
+
+
+        .confirmar:active {
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        /* =========================
+           MENSAJE DE CONFIRMACIÓN
+        ========================= */
+
+        #mensaje {
+
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: #e1f5ef;
+
+            border:
+                1px solid #b7e4d8;
+
+            color: #3776be;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            line-height: 1.5;
+
+            animation:
+                aparecer 0.5s ease;
+
+        }
+
+
+        /* =========================
+           DECORACIONES
+        ========================= */
+
+        .decoracion {
+
+            position: fixed;
+
+            font-size: 35px;
+
+            opacity: 0.12;
+
+            z-index: -1;
+
+        }
+
+
+        .huella1 {
+
+            top: 18%;
+
+            left: 3%;
+
+            transform: rotate(-20deg);
+
+        }
+
+
+        .huella2 {
+
+            bottom: 10%;
+
+            right: 4%;
+
+            transform: rotate(20deg);
+
+        }
+
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 800px) {
+
+
+            header {
+
+                padding:
+                    15px 5%;
+
+            }
+
+
+            .logo {
+
+                font-size: 23px;
+
+            }
+
+
+            .inicio {
+
+                padding:
+                    9px 14px;
+
+                font-size: 13px;
+
+            }
+
+
+            .contenedor {
+
+                width: 92%;
+
+                margin: 30px auto;
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .imagen-mascotas {
+
+                min-height: 350px;
+
+            }
+
+
+            .contenido-formulario {
+
+                padding: 30px 22px;
+
+            }
+
+
+            .fila {
+
+                grid-template-columns: 1fr;
+
+                gap: 0;
+
+            }
+
+
+            .titulo h1 {
+
+                font-size: 27px;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- DECORACIONES -->
+
+    <div class="decoracion huella1">
+        🐾
+    </div>
+
+    <div class="decoracion huella2">
+        🐾
+    </div>
+
+
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+
+    <header>
+
+
+        <div class="logo">
+
+            🐾 Huellitas
+
+        </div>
+
+
+        <a
+            href="paginicio.html"
+            class="inicio"
+        >
+
+            🏠 Volver al inicio
+
+        </a>
+
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTENEDOR
+    ========================== -->
+
+    <div class="contenedor">
+
+
+
+        <!-- =========================
+             IMAGEN
+        ========================== -->
+
+        <div class="imagen-mascotas">
+
+
+            <img
+                src="perritos.png"
+                alt="Perritos de la clínica Huellitas"
+            >
+
+
+            <div class="mensaje-imagen">
+
+                <h2>
+                    🐾 Amor y cuidado
+                </h2>
+
+
+                <p>
+
+                    Porque ellos también
+                    son parte de nuestra familia.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             FORMULARIO
+        ========================== -->
+
+        <div class="contenido-formulario">
+
+
+
+            <div class="titulo">
+
+                <h1>
+
+                    🐾 Agenda una cita
+
+                </h1>
+
+
+                <p>
+
+                    Es rápido, fácil y seguro.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="formulario">
+
+
+                <form
+                    id="formularioCita"
+                >
+
+
+
+                    <!-- PROPIETARIO Y MASCOTA -->
+
+                    <div class="fila">
+
+
+                        <div class="campo">
+
+
+                            <label
+                                for="propietario"
+                            >
+
+                                👤 Nombre del propietario
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="propietario"
+                                placeholder="Ej. Ana López"
+                                required
+                            >
+
+
+                        </div>
+
+
+
+                        <div class="campo">
+
+
+                            <label
+                                for="mascota"
+                            >
+
+                                🐾 Nombre de la mascota
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="mascota"
+                                placeholder="Ej. Max"
+                                required
+                            >
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- TIPO Y SERVICIO -->
+
+                    <div class="fila">
+
+
+                        <div class="campo">
+
+
+                            <label
+                                for="tipo"
+                            >
+
+                                🐶 Tipo de mascota
+
+                            </label>
+
+
+                            <select
+                                id="tipo"
+                                required
+                            >
+
+
+                                <option value="">
+
+                                    Selecciona una opción
+
+                                </option>
+
+
+                                <option>
+
+                                    🐶 Perro
+
+                                </option>
+
+
+                                <option>
+
+                                    🐱 Gato
+
+                                </option>
+
+
+                                <option>
+
+                                    🐰 Conejo
+
+                                </option>
+
+
+                                <option>
+
+                                    🐦 Ave
+
+                                </option>
+
+
+                                <option>
+
+                                    🐹 Otro
+
+                                </option>
+
+
+                            </select>
+
+
+                        </div>
+
+
+
+                        <div class="campo">
+
+
+                            <label
+                                for="servicio"
+                            >
+
+                                🩺 Servicio
+
+                            </label>
+
+
+                            <select
+                                id="servicio"
+                                required
+                            >
+
+
+                                <option value="">
+
+                                    Selecciona un servicio
+
+                                </option>
+
+
+                                <option>
+
+                                    Consulta general
+
+                                </option>
+
+
+                                <option>
+
+                                    Vacunación
+
+                                </option>
+
+
+                                <option>
+
+                                    Desparasitación
+
+                                </option>
+
+
+                                <option>
+
+                                    Estética
+
+                                </option>
+
+
+                                <option>
+
+                                    Revisión
+
+                                </option>
+
+
+                            </select>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- FECHA Y HORA -->
+
+                    <div class="fila">
+
+
+                        <div class="campo">
+
+
+                            <label
+                                for="fecha"
+                            >
+
+                                📅 Fecha
+
+                            </label>
+
+
+                            <input
+                                type="date"
+                                id="fecha"
+                                required
+                            >
+
+
+                        </div>
+
+
+
+                        <div class="campo">
+
+
+                            <label
+                                for="hora"
+                            >
+
+                                🕐 Hora
+
+                            </label>
+
+
+                            <input
+                                type="time"
+                                id="hora"
+                                required
+                            >
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- BOTÓN -->
+
+                    <button
+                        type="submit"
+                        class="confirmar"
+                    >
+
+                        🐾 Confirmar cita
+
+                    </button>
+
+                    <a href="mis_mascotas.html" class="boton-mascotas">
+    🐶 Mis mascotas
+</a>
+
+
+
+                    <!-- MENSAJE -->
+
+                    <div id="mensaje"></div>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        const formulario =
+            document.getElementById(
+                "formularioCita"
+            );
+
+
+        formulario.addEventListener(
+            "submit",
+            function(event) {
+
+
+                event.preventDefault();
+
+
+                const propietario =
+                    document.getElementById(
+                        "propietario"
+                    ).value;
+
+
+                const mascota =
+                    document.getElementById(
+                        "mascota"
+                    ).value;
+
+
+                const tipo =
+                    document.getElementById(
+                        "tipo"
+                    ).value;
+
+
+                const servicio =
+                    document.getElementById(
+                        "servicio"
+                    ).value;
+
+
+                const fecha =
+                    document.getElementById(
+                        "fecha"
+                    ).value;
+
+
+                const hora =
+                    document.getElementById(
+                        "hora"
+                    ).value;
+
+
+                const mensaje =
+                    document.getElementById(
+                        "mensaje"
+                    );
+
+
+                mensaje.innerHTML =
+
+                    "✅ ¡Cita confirmada!<br><br>" +
+
+                    "🐾 Mascota: <strong>" +
+                    mascota +
+                    "</strong><br>" +
+
+                    "👤 Propietario: <strong>" +
+                    propietario +
+                    "</strong><br>" +
+
+                    "🩺 Servicio: <strong>" +
+                    servicio +
+                    "</strong><br>" +
+
+                    "📅 Fecha: <strong>" +
+                    fecha +
+                    "</strong><br>" +
+
+                    "🕐 Hora: <strong>" +
+                    hora +
+                    "</strong>";
+
+
+                mensaje.style.display =
+                    "block";
+
+
+            }
+        );
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🐾 Huellitas | Mis mascotas</title>
+
+
+    <style>
+
+        /* =========================
+           CONFIGURACIÓN GENERAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eaf6ff,
+                    #f8fcff,
+                    #e8f4ff
+                );
+
+            color: #354b5c;
+
+        }
+
+
+        /* =========================
+           ENCABEZADO
+        ========================= */
+
+        header {
+
+            background: rgba(255,255,255,0.95);
+
+            padding: 18px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 3px 15px rgba(50,100,140,0.12);
+
+            position: relative;
+
+            z-index: 10;
+
+        }
+
+
+        .logo {
+
+            color: #4386ad;
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .inicio {
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #72b7d4,
+                    #4c91b5
+                );
+
+            padding: 11px 20px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+
+        .inicio:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 7px 15px rgba(65,130,165,0.25);
+
+        }
+
+
+        /* =========================
+           DECORACIONES
+        ========================= */
+
+        .decoracion {
+
+            position: fixed;
+
+            font-size: 50px;
+
+            opacity: 0.10;
+
+            z-index: -1;
+
+            pointer-events: none;
+
+        }
+
+
+        .huella1 {
+
+            top: 18%;
+
+            left: 4%;
+
+            transform: rotate(-20deg);
+
+        }
+
+
+        .huella2 {
+
+            bottom: 12%;
+
+            right: 5%;
+
+            transform: rotate(20deg);
+
+        }
+
+
+        .corazon {
+
+            top: 30%;
+
+            right: 8%;
+
+            font-size: 35px;
+
+        }
+
+
+        /* =========================
+           CONTENEDOR
+        ========================= */
+
+        .contenedor {
+
+            width: 90%;
+
+            max-width: 1100px;
+
+            margin: 50px auto;
+
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================= */
+
+        .encabezado {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+        }
+
+
+        .encabezado h1 {
+
+            color: #397da5;
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .encabezado p {
+
+            color: #6d7f8d;
+
+            font-size: 16px;
+
+        }
+
+
+        .subtitulo {
+
+            display: inline-block;
+
+            margin-top: 12px;
+
+            padding: 8px 18px;
+
+            border-radius: 20px;
+
+            background: #dcefff;
+
+            color: #4386ad;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           TARJETAS
+        ========================= */
+
+        .mascotas {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 30px;
+
+        }
+
+
+        .mascota {
+
+            background: rgba(255,255,255,0.96);
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 12px 30px rgba(60,120,160,0.13);
+
+            transition: 0.35s;
+
+            border:
+                1px solid #dcecf6;
+
+        }
+
+
+        .mascota:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 18px 35px rgba(60,120,160,0.20);
+
+        }
+
+
+        /* =========================
+           PARTE SUPERIOR
+        ========================= */
+
+        .parte-superior {
+
+            height: 150px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dff3ff,
+                    #c9e9fa
+                );
+
+            position: relative;
+
+        }
+
+
+        .huella-grande {
+
+            font-size: 85px;
+
+            filter:
+                drop-shadow(
+                    0 5px 5px
+                    rgba(60,120,160,0.15)
+                );
+
+        }
+
+
+        .estado {
+
+            position: absolute;
+
+            top: 15px;
+
+            right: 15px;
+
+            background: #ffffff;
+
+            color: #4d9b78;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.08);
+
+        }
+        .sin-mascotas {
+
+    grid-column: 1 / -1;
+
+    background: white;
+
+    padding: 50px 25px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 25px rgba(60,120,160,0.12);
+
+}
+
+.icono-vacio {
+
+    font-size: 70px;
+
+    margin-bottom: 15px;
+
+}
+
+.sin-mascotas h2 {
+
+    color: #397da5;
+
+    margin-bottom: 10px;
+
+}
+
+.sin-mascotas p {
+
+    color: #778b99;
+
+    margin-bottom: 20px;
+
+}
+
+
+        /* =========================
+           INFORMACIÓN
+        ========================= */
+
+        .informacion {
+
+            padding: 25px;
+
+        }
+
+
+        .nombre {
+
+            color: #397da5;
+
+            font-size: 27px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .tipo {
+
+            color: #8094a3;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .datos {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .dato {
+
+            background: #f3f9fd;
+
+            border-radius: 14px;
+
+            padding: 13px;
+
+            border:
+                1px solid #e2eff7;
+
+        }
+
+
+        .dato span {
+
+            display: block;
+
+            color: #8296a4;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .dato strong {
+
+            color: #45677c;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================
+           BOTONES
+        ========================= */
+
+        .botones {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+
+        }
+
+
+        .boton {
+
+            display: block;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            padding: 13px 10px;
+
+            border-radius: 14px;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .expediente {
+
+            background: #e2f2fb;
+
+            color: #397da5;
+
+            border:
+                1px solid #c8e6f5;
+
+        }
+
+
+        .expediente:hover {
+
+            background: #cfeaf8;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .cita {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #72b7d4,
+                    #4d91b5
+                );
+
+            color: white;
+
+        }
+
+
+        .cita:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 15px rgba(65,130,165,0.25);
+
+        }
+
+
+        /* =========================
+           SECCIÓN INFERIOR
+        ========================= */
+
+        .pie {
+
+            margin-top: 40px;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 22px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px rgba(60,120,160,0.10);
+
+        }
+
+
+        .pie h2 {
+
+            color: #4386ad;
+
+            font-size: 21px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .pie p {
+
+            color: #778b99;
+
+            font-size: 14px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .boton-cita {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #72b7d4,
+                    #4c91b5
+                );
+
+            color: white;
+
+            padding: 13px 25px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+
+        .boton-cita:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 18px rgba(65,130,165,0.25);
+
+        }
+
+
+        /* =========================
+           VENTANA DEL EXPEDIENTE
+        ========================= */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(35,75,100,0.45);
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+
+            z-index: 100;
+
+        }
+
+
+        .modal-contenido {
+
+            width: 100%;
+
+            max-width: 520px;
+
+            background: white;
+
+            border-radius: 28px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 50px rgba(30,80,110,0.25);
+
+            animation:
+                aparecer 0.3s ease;
+
+        }
+
+
+        @keyframes aparecer {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.9);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1);
+
+            }
+
+        }
+
+
+        .modal-titulo {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .modal-titulo h2 {
+
+            color: #397da5;
+
+        }
+
+
+        .cerrar {
+
+            border: none;
+
+            background: #e8f4fb;
+
+            color: #397da5;
+
+            width: 35px;
+
+            height: 35px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+        }
+
+
+        .expediente-dato {
+
+            padding: 13px;
+
+            margin-bottom: 10px;
+
+            background: #f3f9fd;
+
+            border-radius: 13px;
+
+        }
+
+
+        .expediente-dato strong {
+
+            color: #397da5;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            header {
+
+                padding:
+                    15px 5%;
+
+            }
+
+
+            .logo {
+
+                font-size: 23px;
+
+            }
+
+
+            .inicio {
+
+                padding:
+                    9px 14px;
+
+                font-size: 13px;
+
+            }
+
+
+            .contenedor {
+
+                width: 92%;
+
+                margin: 35px auto;
+
+            }
+
+
+            .mascotas {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .encabezado h1 {
+
+                font-size: 30px;
+
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .datos {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .botones {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- DECORACIONES -->
+
+    <div class="decoracion huella1">
+        🐾
+    </div>
+
+    <div class="decoracion huella2">
+        🐾
+    </div>
+
+    <div class="decoracion corazon">
+        💙
+    </div>
+
+
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+
+    <header>
+
+        <div class="logo">
+            🐾 Huellitas
+        </div>
+
+
+        <a
+            href="paginicio.html"
+            class="inicio"
+        >
+            🏠 Volver al inicio
+        </a>
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTENIDO
+    ========================== -->
+
+    <main class="contenedor">
+
+
+        <section class="encabezado">
+
+            <h1>
+                🐾 Mis mascotas
+            </h1>
+
+            <p>
+                Aquí puedes consultar la información
+                y el expediente de tus mascotas.
+            </p>
+
+            <div class="subtitulo">
+                💙 Tus compañeros, siempre en buenas manos
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             MASCOTAS
+        ========================== -->
+
+        <section class="mascotas" id="listaMascotas">
+</section>
+                
+
+
+        <!-- =========================
+             PARTE INFERIOR
+        ========================== -->
+
+        <section class="pie">
+
+            <h2>
+                🐾 Agregar mascota
+            </h2>
+
+
+            <p>
+                Mantén al día la salud y bienestar
+                de tus mascotas.
+            </p>
+
+
+            <a
+                href="Agregar_mascota.html"
+                class="boton-cita"
+            >
+                🐾Agregar mascota
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         MODAL EXPEDIENTE
+    ========================== -->
+
+    <div
+        class="modal"
+        id="modalExpediente"
+    >
+
+
+        <div class="modal-contenido">
+
+
+            <div class="modal-titulo">
+
+                <h2 id="tituloExpediente">
+                    📋 Expediente
+                </h2>
+
+
+                <button
+                    class="cerrar"
+                    onclick="cerrarExpediente()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div id="contenidoExpediente">
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        function mostrarExpediente(mascota) {
+
+
+            const modal =
+                document.getElementById(
+                    "modalExpediente"
+                );
+
+
+            const titulo =
+                document.getElementById(
+                    "tituloExpediente"
+                );
+
+
+            const contenido =
+                document.getElementById(
+                    "contenidoExpediente"
+                );
+
+
+
+            if (mascota === "max") {
+
+
+                titulo.innerHTML =
+                    "🐶 Expediente de Max";
+
+
+                contenido.innerHTML = `
+
+                    <div class="expediente-dato">
+                        <strong>Nombre:</strong> Max
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Tipo:</strong> Perro
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Raza:</strong> Labrador
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Edad:</strong> 3 años
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Peso:</strong> 18 kg
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Vacunas:</strong> Esquema completo
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Última consulta:</strong>
+                        15/09/2026
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Observaciones:</strong>
+                        Sin observaciones.
+                    </div>
+
+                `;
+
+
+            }
+
+
+
+            if (mascota === "luna") {
+
+
+                titulo.innerHTML =
+                    "🐱 Expediente de Luna";
+
+
+                contenido.innerHTML = `
+
+                    <div class="expediente-dato">
+                        <strong>Nombre:</strong> Luna
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Tipo:</strong> Gato
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Raza:</strong> Doméstico
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Edad:</strong> 2 años
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Peso:</strong> 4.5 kg
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Vacunas:</strong> Esquema completo
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Última consulta:</strong>
+                        20/09/2026
+                    </div>
+
+                    <div class="expediente-dato">
+                        <strong>Observaciones:</strong>
+                        Sin observaciones.
+                    </div>
+
+                `;
+
+            }
+
+
+            modal.style.display = "flex";
+
+        }
+
+
+
+        function cerrarExpediente() {
+
+            document.getElementById(
+                "modalExpediente"
+            ).style.display = "none";
+
+        }
+
+
+
+        window.onclick = function(event) {
+
+            const modal =
+                document.getElementById(
+                    "modalExpediente"
+                );
+
+
+            if (event.target === modal) {
+
+                modal.style.display = "none";
+
+            }
+
+        };
+
+
+    </script>
+    <script>
+
+    const listaMascotas =
+        document.getElementById("listaMascotas");
+
+    const mascotas =
+        JSON.parse(
+            localStorage.getItem("mascotasHuellitas")
+        ) || [];
+
+
+    function mostrarMascotas() {
+
+        listaMascotas.innerHTML = "";
+
+
+        if (mascotas.length === 0) {
+
+            listaMascotas.innerHTML = `
+
+                <div class="sin-mascotas">
+
+                    <div class="icono-vacio">
+                        🐾
+                    </div>
+
+                    <h2>
+                        Aún no tienes mascotas registradas
+                    </h2>
+
+                    <p>
+                        Agrega a tu compañero para comenzar
+                        a llevar su expediente.
+                    </p>
+
+                    <a
+                        href="Agregar_mascota.html"
+                        class="boton-cita"
+                    >
+                        ➕ Agregar mascota
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        mascotas.forEach(
+            (mascota, indice) => {
+
+                let emoji = "🐾";
+
+                if (mascota.tipo === "Perro") {
+                    emoji = "🐶";
+                }
+
+                if (mascota.tipo === "Gato") {
+                    emoji = "🐱";
+                }
+
+                if (mascota.tipo === "Conejo") {
+                    emoji = "🐰";
+                }
+
+                if (mascota.tipo === "Ave") {
+                    emoji = "🐦";
+                }
+
+
+                listaMascotas.innerHTML += `
+
+                    <article class="mascota">
+
+                        <div class="parte-superior">
+
+                            <div class="huella-grande">
+                                ${emoji}
+                            </div>
+
+                            <div class="estado">
+                                ● Activo
+                            </div>
+
+                        </div>
+
+
+                        <div class="informacion">
+
+                            <h2 class="nombre">
+                                ${mascota.nombre}
+                            </h2>
+
+                            <p class="tipo">
+                                ${emoji} ${mascota.tipo}
+                            </p>
+
+
+                            <div class="datos">
+
+                                <div class="dato">
+
+                                    <span>
+                                        🎂 Edad
+                                    </span>
+
+                                    <strong>
+                                        ${mascota.edad} años
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="dato">
+
+                                    <span>
+                                        🧬 Raza
+                                    </span>
+
+                                    <strong>
+                                        ${mascota.raza}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="dato">
+
+                                    <span>
+                                        ⚖️ Peso
+                                    </span>
+
+                                    <strong>
+                                        ${mascota.peso} kg
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="dato">
+
+                                    <span>
+                                        💉 Vacunas
+                                    </span>
+
+                                    <strong>
+                                        ${mascota.vacunas}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="botones">
+
+                                <button
+                                    class="boton expediente"
+                                    onclick="mostrarExpediente(${indice})"
+                                >
+                                    📋 Expediente
+                                </button>
+
+
+                                <a
+                                    href="Agendar_cita.html"
+                                    class="boton cita"
+                                >
+                                    📅 Agendar cita
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    function mostrarExpediente(indice) {
+
+        const mascota =
+            mascotas[indice];
+
+        alert(
+
+            "📋 Expediente de " +
+            mascota.nombre +
+
+            "\\n\\n" +
+
+            "🐾 Tipo: " +
+            mascota.tipo +
+
+            "\\n" +
+
+            "🧬 Raza: " +
+            mascota.raza +
+
+            "\\n" +
+
+            "🎂 Edad: " +
+            mascota.edad +
+            " años" +
+
+            "\\n" +
+
+            "⚖️ Peso: " +
+            mascota.peso +
+            " kg" +
+
+            "\\n" +
+
+            "💉 Vacunas: " +
+            mascota.vacunas +
+
+            "\\n\\n" +
+
+            "📝 Observaciones: " +
+            (mascota.observaciones ||
+            "Sin observaciones")
+
+        );
+
+    }
+
+
+    mostrarMascotas();
+
+</script>
+
+
+</body>
+
+</html>

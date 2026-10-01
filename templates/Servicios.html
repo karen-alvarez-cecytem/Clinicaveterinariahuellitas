@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚹Document</title>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5fbff;
+            color: #183b61;
+        }
+
+        header {
+            width: 100%;
+            height: 82px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            border-bottom: 1px solid #e1edf7;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+            background: #dff2ff;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .logo-text {
+            color: #176db0;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo-small {
+            display: block;
+            color: #8298aa;
+            font-size: 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #506b82;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 13px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #eaf6ff;
+            color: #176db0;
+        }
+
+        .activo {
+            background: #e4f3ff;
+            color: #176db0 !important;
+        }
+
+        .btn-agendar {
+            background: #2384cc;
+            color: white !important;
+            padding: 12px 20px !important;
+            border-radius: 25px;
+            margin-left: 7px;
+            box-shadow: 0 7px 18px rgba(35, 132, 204, 0.22);
+        }
+
+        .btn-agendar:hover {
+            background: #126aaa;
+            transform: translateY(-2px);
+        }
+
+        .encabezado {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            background: #e2f3ff;
+            color: #2380c1;
+            padding: 9px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .encabezado h1 {
+            color: #1d4266;
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .encabezado h1 span {
+            color: #2384cc;
+        }
+
+        .encabezado p {
+            color: #718698;
+            font-size: 16px;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        .contenedor-servicios {
+            width: 88%;
+            max-width: 1150px;
+            margin: 10px auto 70px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .servicio {
+            background: white;
+            min-height: 205px;
+            padding: 25px 20px;
+            border-radius: 23px;
+            border: 1px solid #e1eff8;
+            box-shadow: 0 8px 25px rgba(35, 92, 130, 0.07);
+            position: relative;
+            overflow: hidden;
+            transition: 0.35s;
+        }
+
+        .servicio::before {
+            content: "";
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: #e8f6ff;
+            border-radius: 50%;
+            right: -35px;
+            top: -35px;
+            transition: 0.35s;
+        }
+
+        .servicio:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(35, 92, 130, 0.14);
+            border-color: #b9ddf5;
+        }
+
+        .servicio:hover::before {
+            transform: scale(1.35);
+        }
+
+        .icono {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: #e4f4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            margin-bottom: 17px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .servicio:nth-child(even) .icono {
+            background: #dff1ff;
+        }
+
+        .servicio h2 {
+            color: #245677;
+            font-size: 18px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .servicio p {
+            color: #738797;
+            font-size: 13px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .volver {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .btn-inicio {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background: #2384cc;
+            padding: 14px 25px;
+            border-radius: 28px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(35, 132, 204, 0.22);
+            transition: 0.3s;
+        }
+
+        .btn-inicio:hover {
+            background: #126aaa;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: #214e6d;
+            color: white;
+            padding: 22px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer strong {
+            font-size: 16px;
+        }
+
+        footer p {
+            color: #c7ddea;
+            font-size: 12px;
+        }
+
+        @media (max-width: 950px) {
+            .contenedor-servicios {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            header {
+                height: auto;
+                padding: 15px 5%;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .encabezado h1 {
+                font-size: 35px;
+            }
+
+            .contenedor-servicios {
+                grid-template-columns: 1fr;
+                width: 88%;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="paginicio.html" class="logo">
+            <div class="logo-icon">🐾</div>
+
+            <div>
+                <div class="logo-text">Huellitas</div>
+                <span class="logo-small">Clínica Veterinaria</span>
+            </div>
+        </a>
+
+        <nav>
+            <a href="paginicio.html">🏠Inicio</a>
+            <a href="Servicios.html" class="activo">🚹Servicios</a>
+            <a href="Contacto.html">📞Contacto</a>
+            <a href="Agendar_cita.html" class="btn-agendar">📅 Agendar cita</a>
+        </nav>
+    </header>
+
+    <section class="encabezado">
+        <div class="etiqueta">🐾 Cuidado · Salud · Bienestar</div>
+
+        <h1>
+            Nuestros <span>Servicios</span>
+        </h1>
+
+        <p>
+            Todo lo que tu mascota necesita en un solo lugar.
+            Brindamos atención profesional, responsable y llena
+            de cariño para cuidar a quienes forman parte de nuestra familia.
+        </p>
+    </section>
+
+    <section class="contenedor-servicios">
+
+        <div class="servicio">
+            <div class="icono">🩺</div>
+            <h2>Consulta general</h2>
+            <p>
+                Revisión y diagnóstico profesional para conocer
+                el estado de salud de tu mascota.
+            </p>
+        </div>
+
+        <div class="servicio">
+            <div class="icono">💉</div>
+            <h2>Vacunación</h2>
+            <p>
+                Protección en todas las etapas de vida mediante
+                un adecuado esquema de vacunación.
+            </p>
+        </div>
+
+        <div class="servicio">
+            <div class="icono">✂️</div>
+            <h2>Estética</h2>
+            <p>
+                Baño, corte de uñas y más para mantener a tu
+                mascota limpia y cómoda.
+            </p>
+        </div>
+
+        <div class="servicio">
+            <div class="icono">🪱</div>
+            <h2>Desparasitación</h2>
+            <p>
+                Control de parásitos internos y externos
+                para proteger su salud.
+            </p>
+        </div>
+
+        <div class="servicio">
+            <div class="icono">✚</div>
+            <h2>Emergencias</h2>
+            <p>
+                Atención inmediata cuando tu mascota
+                más lo necesita.
+            </p>
+        </div>
+
+        <div class="servicio">
+            <div class="icono">🩹</div>
+            <h2>Cirugías</h2>
+            <p>
+                Procedimientos seguros realizados con
+                responsabilidad y cuidado.
+            </p>
+        </div>
+
+        <div class="servicio">
+            <div class="icono">🛡️</div>
+            <h2>Medicina preventiva</h2>
+            <p>
+                Prevención y seguimiento para favorecer
+                una vida más larga y saludable.
+            </p>
+        </div>
+
+        <div class="servicio">
+            <div class="icono">🐾</div>
+            <h2>Revisión de mascotas</h2>
+            <p>
+                Control y seguimiento de su estado de salud.
+            </p>
+        </div>
+
+    </section>
+
+    <div class="volver">
+        <a href="paginicio.html" class="btn-inicio">
+            🐾Volver al inicio
+        </a>
+    </div>
+
+    <footer>
+        <div>
+            <strong>🐾 Huellitas</strong>
+            <p>Clínica Veterinaria</p>
+        </div>
+
+        <p>
+            Cuidamos a quienes forman parte de tu familia 💙
+        </p>
+    </footer>
+
+</body>
+</html>

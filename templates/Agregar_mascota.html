@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🐾 Huellitas | Agregar mascota</title>
+
+
+    <style>
+
+        /* =========================
+           CONFIGURACIÓN GENERAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eaf6ff,
+                    #f8fcff,
+                    #e5f3ff
+                );
+
+            color: #40596b;
+
+        }
+
+
+        /* =========================
+           ENCABEZADO
+        ========================= */
+
+        header {
+
+            background: rgba(255,255,255,0.96);
+
+            padding: 18px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 3px 15px rgba(50,100,140,0.12);
+
+        }
+
+
+        .logo {
+
+            color: #4386ad;
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .volver {
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #72b7d4,
+                    #4c91b5
+                );
+
+            padding: 11px 20px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+
+        .volver:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 7px 15px rgba(65,130,165,0.25);
+
+        }
+
+
+        /* =========================
+           CONTENEDOR
+        ========================= */
+
+        .contenedor {
+
+            width: 90%;
+
+            max-width: 1000px;
+
+            margin: 50px auto;
+
+            display: grid;
+
+            grid-template-columns: 38% 62%;
+
+            background: white;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 40px rgba(60,120,160,0.15);
+
+            animation:
+                aparecer 0.7s ease;
+
+        }
+
+
+        @keyframes aparecer {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(20px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =========================
+           PANEL IZQUIERDO
+        ========================= */
+
+        .bienvenida {
+
+            background:
+                linear-gradient(
+                    160deg,
+                    #72b7d4,
+                    #4c91b5
+                );
+
+            color: white;
+
+            padding: 45px 30px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .bienvenida::before {
+
+            content: "🐾";
+
+            position: absolute;
+
+            font-size: 170px;
+
+            opacity: 0.08;
+
+            top: -35px;
+
+            right: -25px;
+
+            transform: rotate(20deg);
+
+        }
+
+
+        .bienvenida::after {
+
+            content: "🐾";
+
+            position: absolute;
+
+            font-size: 130px;
+
+            opacity: 0.08;
+
+            bottom: -30px;
+
+            left: -25px;
+
+            transform: rotate(-20deg);
+
+        }
+
+
+        .icono-mascota {
+
+            font-size: 100px;
+
+            margin-bottom: 20px;
+
+            filter:
+                drop-shadow(
+                    0 8px 8px
+                    rgba(0,0,0,0.12)
+                );
+
+            animation:
+                flotar 3s ease-in-out infinite;
+
+        }
+
+
+        @keyframes flotar {
+
+            0%, 100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-8px);
+
+            }
+
+        }
+
+
+        .bienvenida h1 {
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .bienvenida p {
+
+            line-height: 1.6;
+
+            font-size: 15px;
+
+            opacity: 0.95;
+
+        }
+
+
+        /* =========================
+           FORMULARIO
+        ========================= */
+
+        .formulario {
+
+            padding: 45px;
+
+        }
+
+
+        .titulo {
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .titulo h2 {
+
+            color: #397da5;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .titulo p {
+
+            color: #7c8f9c;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================
+           FILAS
+        ========================= */
+
+        .fila {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+
+        }
+
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
+        .campo {
+
+            margin-bottom: 19px;
+
+        }
+
+
+        .campo label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #40596b;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        .campo input,
+        .campo select,
+        .campo textarea {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border:
+                1px solid #d8e8f1;
+
+            border-radius: 13px;
+
+            outline: none;
+
+            background: #fafdff;
+
+            color: #40596b;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .campo textarea {
+
+            min-height: 90px;
+
+            resize: vertical;
+
+        }
+
+
+        .campo input:focus,
+        .campo select:focus,
+        .campo textarea:focus {
+
+            border-color: #65a9c9;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(101,169,201,0.13);
+
+        }
+
+
+        /* =========================
+           BOTÓN GUARDAR
+        ========================= */
+
+        .guardar {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 16px;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #72b7d4,
+                    #4c91b5
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 7px 18px
+                rgba(65,130,165,0.22);
+
+        }
+
+
+        .guardar:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 22px
+                rgba(65,130,165,0.30);
+
+        }
+
+
+        /* =========================
+           MENSAJE
+        ========================= */
+
+        #mensaje {
+
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 15px;
+
+            border-radius: 14px;
+
+            background: #e2f4fb;
+
+            border:
+                1px solid #c3e5f3;
+
+            color: #397da5;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            header {
+
+                padding:
+                    15px 5%;
+
+            }
+
+
+            .logo {
+
+                font-size: 23px;
+
+            }
+
+
+            .volver {
+
+                padding:
+                    9px 14px;
+
+                font-size: 13px;
+
+            }
+
+
+            .contenedor {
+
+                width: 92%;
+
+                margin: 30px auto;
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .bienvenida {
+
+                padding: 35px 25px;
+
+            }
+
+
+            .icono-mascota {
+
+                font-size: 75px;
+
+            }
+
+
+            .formulario {
+
+                padding: 30px 22px;
+
+            }
+
+
+            .fila {
+
+                grid-template-columns: 1fr;
+
+                gap: 0;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+
+    <header>
+
+
+        <div class="logo">
+            🐾 Huellitas
+        </div>
+
+
+        <a
+            href="mis_mascotas.html"
+            class="volver"
+        >
+
+            ← Mis mascotas
+
+        </a>
+
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTENEDOR
+    ========================== -->
+
+    <div class="contenedor">
+
+
+
+        <!-- PANEL DE BIENVENIDA -->
+
+        <div class="bienvenida">
+
+
+            <div class="icono-mascota">
+                🐶
+            </div>
+
+
+            <h1>
+                Nueva mascota
+            </h1>
+
+
+            <p>
+
+                Registra a tu compañero
+                para llevar un mejor control
+                de su información y cuidados.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- FORMULARIO -->
+
+        <div class="formulario">
+
+
+            <div class="titulo">
+
+                <h2>
+                    🐾 Agregar mascota
+                </h2>
+
+
+                <p>
+                    Completa los datos de tu mascota.
+                </p>
+
+            </div>
+
+
+
+            <form id="formularioMascota">
+
+
+
+                <!-- NOMBRE Y TIPO -->
+
+                <div class="fila">
+
+
+                    <div class="campo">
+
+                        <label for="nombre">
+
+                            🐾 Nombre
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="nombre"
+                            placeholder="Ej. Max"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="campo">
+
+                        <label for="tipo">
+
+                            🐶 Tipo de mascota
+
+                        </label>
+
+
+                        <select
+                            id="tipo"
+                            required
+                        >
+
+                            <option value="">
+
+                                Selecciona una opción
+
+                            </option>
+
+
+                            <option value="Perro">
+
+                                🐶 Perro
+
+                            </option>
+
+
+                            <option value="Gato">
+
+                                🐱 Gato
+
+                            </option>
+
+
+                            <option value="Conejo">
+
+                                🐰 Conejo
+
+                            </option>
+
+
+                            <option value="Ave">
+
+                                🐦 Ave
+
+                            </option>
+
+
+                            <option value="Otro">
+
+                                🐹 Otro
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- RAZA Y EDAD -->
+
+                <div class="fila">
+
+
+                    <div class="campo">
+
+                        <label for="raza">
+
+                            🧬 Raza
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="raza"
+                            placeholder="Ej. Labrador"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="campo">
+
+                        <label for="edad">
+
+                            🎂 Edad
+
+                        </label>
+
+
+                        <input
+                            type="number"
+                            id="edad"
+                            placeholder="Ej. 3"
+                            min="0"
+                            max="50"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- PESO Y VACUNAS -->
+
+                <div class="fila">
+
+
+                    <div class="campo">
+
+                        <label for="peso">
+
+                            ⚖️ Peso (kg)
+
+                        </label>
+
+
+                        <input
+                            type="number"
+                            id="peso"
+                            placeholder="Ej. 18"
+                            min="0"
+                            step="0.1"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="campo">
+
+                        <label for="vacunas">
+
+                            💉 Vacunas
+
+                        </label>
+
+
+                        <select
+                            id="vacunas"
+                            required
+                        >
+
+                            <option value="">
+
+                                Selecciona una opción
+
+                            </option>
+
+
+                            <option value="Completas">
+
+                                ✅ Completas
+
+                            </option>
+
+
+                            <option value="Pendientes">
+
+                                ⚠️ Pendientes
+
+                            </option>
+
+
+                            <option value="No registradas">
+
+                                ❔ No registradas
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- OBSERVACIONES -->
+
+                <div class="campo">
+
+
+                    <label for="observaciones">
+
+                        📝 Observaciones
+
+                    </label>
+
+
+                    <textarea
+                        id="observaciones"
+                        placeholder="Escribe información importante sobre tu mascota..."
+                    ></textarea>
+
+
+                </div>
+
+
+
+                <!-- BOTÓN -->
+
+                <button
+                    type="submit"
+                    class="guardar"
+                >
+
+                    💙 Guardar mascota
+
+                </button>
+
+
+
+                <!-- MENSAJE -->
+
+                <div id="mensaje"></div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        const formulario =
+            document.getElementById(
+                "formularioMascota"
+            );
+
+
+        formulario.addEventListener(
+            "submit",
+            function(event) {
+
+
+                event.preventDefault();
+
+
+                const mascota = {
+
+                    nombre:
+                        document.getElementById(
+                            "nombre"
+                        ).value,
+
+                    tipo:
+                        document.getElementById(
+                            "tipo"
+                        ).value,
+
+                    raza:
+                        document.getElementById(
+                            "raza"
+                        ).value,
+
+                    edad:
+                        document.getElementById(
+                            "edad"
+                        ).value,
+
+                    peso:
+                        document.getElementById(
+                            "peso"
+                        ).value,
+
+                    vacunas:
+                        document.getElementById(
+                            "vacunas"
+                        ).value,
+
+                    observaciones:
+                        document.getElementById(
+                            "observaciones"
+                        ).value
+
+                };
+
+
+                /* Obtener mascotas guardadas */
+
+                let mascotas =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "mascotasHuellitas"
+                        )
+                    ) || [];
+
+
+                /* Agregar nueva mascota */
+
+                mascotas.push(mascota);
+
+
+                /* Guardar */
+
+                localStorage.setItem(
+                    "mascotasHuellitas",
+                    JSON.stringify(mascotas)
+                );
+
+
+                /* Mostrar mensaje */
+
+                const mensaje =
+                    document.getElementById(
+                        "mensaje"
+                    );
+
+
+                mensaje.innerHTML =
+
+                    "✅ ¡Mascota registrada correctamente!<br><br>" +
+
+                    "🐾 <strong>" +
+                    mascota.nombre +
+                    "</strong> ya forma parte de Huellitas.";
+
+
+                mensaje.style.display =
+                    "block";
+
+
+                /* Limpiar formulario */
+
+                formulario.reset();
+
+
+                /* Ir a Mis mascotas después de 1.5 segundos */
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "mis_mascotas.html";
+
+                    },
+                    1500
+                );
+
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
